@@ -1,0 +1,121 @@
+#title{
+    font-size: 1.5em;
+}
+.mr-10{
+    margin-right: 10px;
+}
+#nav-bar a {
+    color: white;
+}
+
+#nav-bar{
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+#navbar-toggler{
+    position: absolute;
+    right:4px;
+    top: 3px;
+}
+
+
+
+.container-t25{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.sidebar{
+    background-color: #3065c7a6;
+    height: 100%;
+}
+.fullHeight{
+    height: calc(100vh - 90px);   
+}
+
+
+.nav-item-active{
+    background-color: #678cd0;
+   
+}
+
+@media (min-width: 767px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 100vw;
+    }
+    #navbar-collapse{
+        font-size: 23px;
+        font-weight: bolder;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        height: 82px;
+    }
+    .nav-item{
+        
+        height: 80px;
+        padding-top: 12px;
+        width: auto !important;
+    }
+
+    #navbar-collapse{
+       
+        height: 82px;
+    }
+
+
+}
+
+@media (min-width: 1170px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: calc(100vw - 100px);
+        }
+    .max-width-50{
+            max-width: calc(100vw - 100px);
+            margin-left: auto;
+            margin-right: auto;
+           
+        }   
+    }
+
+@media (max-width: 1170px){
+    #navbar-collapse{
+        font-size: 16px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+    }
+        }
+
+@media (max-width: 767px){
+    .navbar-brand{
+        font-size: medium;
+    }
+    
+}
+.col-logo-acerca{
+    text-align: center;
+}
+.row1-acerca{
+    padding-top: 40px;
+    margin-bottom: 20vh;
+}
+.col-texto-acerca{
+    padding-top:20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: x-large;
+    text-align: justify;
+}
+.pescador-acerca{
+    width: 420px;
+}
+
+.filters{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #c8c8c8;
+    margin-top: 10px;
+}
