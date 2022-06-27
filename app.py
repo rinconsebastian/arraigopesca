@@ -1,16 +1,21 @@
 # Basics Requirements
-from dash import dcc,  html, callback, Input, Output
-
-
-# Dash Bootstrap Components
+from dash import Dash, dcc,  html, callback, Input, Output
 import dash_bootstrap_components as dbc
 
 
-# Data
+
+# Dash instance declaration
+request_path_prefix = None
+app = Dash(__name__, requests_pathname_prefix=request_path_prefix, external_stylesheets=[dbc.themes.BOOTSTRAP],
+                meta_tags=[{'name':'viewport', 'content':'width=device-width, initial-scale=1.0'}])
+app.title = 'Dashboard team 25 - cohort 6 Colombia Correlation One'  
+
+# LOAD THE DIFFERENT FILES
+from pages import dashboard, acercade
+from lib import title
 
 
-# Recall app
-from app_ds4f import app
+
 
 ###########################################################
 #
@@ -18,8 +23,6 @@ from app_ds4f import app
 #
 ###########################################################
 
-# LOAD THE DIFFERENT FILES
-from lib import title,dashboard, acercade
 
 
 # PLACE THE COMPONENTS IN THE LAYOUT
