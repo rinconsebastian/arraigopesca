@@ -1,28 +1,29 @@
 # Basics Requirements
 from dash import Dash, dcc,  html, callback, Input, Output
 import dash_bootstrap_components as dbc
+from lib.heatmap import heatmap
 
 
 
 # Dash instance declaration
 request_path_prefix = None
 app = Dash(__name__, requests_pathname_prefix=request_path_prefix, external_stylesheets=[dbc.themes.BOOTSTRAP],
-                meta_tags=[{'name':'viewport', 'content':'width=device-width, initial-scale=1.0'}])
+                meta_tags=[{'name':'viewport', 'content':'width=device-width, initial-scale=1.0'}], suppress_callback_exceptions=True)
 app.title = 'Dashboard team 25 - cohort 6 Colombia Correlation One'  
 
 # LOAD THE DIFFERENT FILES
 from pages import dashboard, acercade
 from lib import title
 
-
-
+from lib.barchart import barchart
+from data.process import especies, mapData
 
 ###########################################################
 #
 #           APP LAYOUT:
 #
 ###########################################################
-
+server = app.server
 
 
 # PLACE THE COMPONENTS IN THE LAYOUT
@@ -86,10 +87,30 @@ def change_button_style(pathname):
     else:
         return  ""
        
+#############################################################
+# Fig 1 Heatmap
+#############################################################
+@app.callback(
+    Output('idmap', 'children'),
+    Input('cuenca_dropdown', 'value')
+)
+def update_outputmap(value):
+    df1 = mapData(value)
+    fig1 = heatmap(df1,"Heatmap","lat","lon","","bc1")
+    return fig1.display()
+
 
 #############################################################
-# PROFITS BY CATEGORY : Add sidebar interaction here
+# Fig 2 Species
 #############################################################
+@app.callback(
+    Output('idfig1', 'children'),
+    Input('cuenca_dropdown', 'value')
+)
+def update_output(value):
+    df2 = especies(value)
+    fig2 = barchart(df2,"Especies","Especie","Valor","","bc2s")
+    return fig2.display()
 
 
 #############################################################

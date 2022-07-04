@@ -19,12 +19,12 @@ from app_ds4f import app
 #############################################################################
 
 dropdown = dcc.Dropdown(
-    id="basin_dropdown",
-    options=[{"label":"Cauca" , "value":"cauca" },
-    {"label":"Magdalena" , "value":"magdalena" },
-    {"label":"San Jorge" , "value":"san_jorge" },
-    {"label":"Sinú" , "value":"sinu" },],
-    value=["cauca", "magdalena","san_jorge","sinu"],
+    id="cuenca_dropdown",
+    options=[{"label":"Cauca" , "value":"RÍO CAUCA" },
+    {"label":"Magdalena" , "value":"RÍO MAGDALENA" },
+    {"label":"San Jorge" , "value":"RÍO SAN JORGE" },
+    {"label":"Sinú" , "value":"RÍO SINÚ" },],
+    value=["RÍO CAUCA", "RÍO MAGDALENA","RÍO SAN JORGE","RÍO SINÚ"],
     multi=True,
 )
 ############################################################################

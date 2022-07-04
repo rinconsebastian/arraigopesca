@@ -16,12 +16,14 @@ import plotly.figure_factory as ff
 
 import numpy as np
 
-from lib.barchart import barchart
+
 from lib.piechart import piechart
 from lib.linechart import linechart
 from lib.bargroupedchart import bargroupedchart
 from lib.heatmapchart import heatmapchart
 from lib.distmultiplechart import distmultiplechart
+from lib.heatmap import heatmap
+
 
 ############################################################################
 #
@@ -29,8 +31,7 @@ from lib.distmultiplechart import distmultiplechart
 #
 #############################################################################
 
-df1 = px.data.gapminder().query("country == 'Canada'")
-fig1 = barchart(df1,"mapa2","year","pop","","bc1")
+
 
 
 #############################################################################
@@ -81,9 +82,6 @@ fig5 = heatmapchart(df5,'Porcentaje de ingresos por pesca',"","","","bc5")
 #############################################################################
 # Fig 6
 #############################################################################
-
-
-
 x1 = np.random.randn(200) - 1
 x2 = np.random.randn(200)
 x3 = np.random.randn(200) + 1
@@ -92,12 +90,7 @@ df6 = [x1, x2, x3]
 
 group_labels = ['Group 1', 'Group 2', 'Group 3']
 colors = ['#835AF1', '#7FA6EE', '#B8F7D4']
-
-
-
 fig6 = distmultiplechart(df6,'Distribución del precio promedio de venta',group_labels,"",colors,"bc6") 
-
-
 
 
 ############################################################################
@@ -109,17 +102,22 @@ fig6 = distmultiplechart(df6,'Distribución del precio promedio de venta',group_
 dashboard = dbc.Container([
     dbc.Row([filters.filters]),
     dbc.Row([
-        dbc.Col([fig1.display()], sm=12, md=4),
-        dbc.Col([fig2.display()], sm=12, md=4),
-        dbc.Col([fig3.display()], sm=12, md=4),
+        dbc.Col([], sm=12, md=6, id="idmap"),
+        dbc.Col([
+            dbc.Row([
+                dbc.Col([], sm=12, md=6, id="idfig1"),
+                dbc.Col([fig2.display()], sm=12, md=6),
+            ]),
+            dbc.Row([
+                dbc.Col([fig4.display()], sm=12, md=6),
+                dbc.Col([fig5.display()], sm=12, md=6),
+            ]),
+    
+        ], sm=12, md=6),
+       
 
     ]),
-    dbc.Row([
-        dbc.Col([fig4.display()], sm=12, md=4),
-        dbc.Col([fig5.display()], sm=12, md=4),
-        dbc.Col([fig6.display()], sm=12, md=4),
-
-    ]),
+   
 ]
 ,className="dashboard"  
 )
