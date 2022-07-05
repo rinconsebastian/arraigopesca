@@ -92,10 +92,11 @@ def change_button_style(pathname):
 #############################################################
 @app.callback(
     Output('idmap', 'children'),
-    Input('cuenca_dropdown', 'value')
+    Input('cuenca_dropdown', 'value'),
+    Input('age-slider', 'value')
 )
-def update_outputmap(value):
-    df1 = mapData(value)
+def update_outputmap(valuecuenca,valueedad):
+    df1 = mapData(valuecuenca,valueedad)
     fig1 = heatmap(df1,"Heatmap","lat","lon","","bc1")
     return fig1.display()
 
@@ -105,14 +106,19 @@ def update_outputmap(value):
 #############################################################
 @app.callback(
     Output('idfig1', 'children'),
-    Input('cuenca_dropdown', 'value')
+    Input('cuenca_dropdown', 'value'),
+    Input('age-slider', 'value')
 )
-def update_output(value):
-    df2 = especies(value)
+def update_output(valuecuenca,valueedad):
+    df2 = especies(valuecuenca,valueedad)
     fig2 = barchart(df2,"Especies","Especie","Valor","","bc2s")
     return fig2.display()
 
-
+@app.callback(
+    Output('edad', 'children'),
+    [Input('age-slider', 'value')])
+def update_output(value):
+    return 'You have selected "{}"'.format(value)
 #############################################################
 # TREEMAP PLOT : Add sidebar interaction here
 #############################################################

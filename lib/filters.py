@@ -27,6 +27,12 @@ dropdown = dcc.Dropdown(
     value=["RÍO CAUCA", "RÍO MAGDALENA","RÍO SAN JORGE","RÍO SINÚ"],
     multi=True,
 )
+#############################################################################
+# Basin Dropdown
+#############################################################################
+
+age_slider = dcc.RangeSlider(15, 100, step=10, value=[0, 120], id='age-slider')
+
 ############################################################################
 #
 # LAYOUT
@@ -35,7 +41,7 @@ dropdown = dcc.Dropdown(
 
 filters = dbc.Row([
     dbc.Col(dropdown),
-    dbc.Col(),
+    dbc.Col(age_slider),
     dbc.Col()
     ],
     className="filters"  

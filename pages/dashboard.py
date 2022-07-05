@@ -117,6 +117,7 @@ dashboard = dbc.Container([
        
 
     ]),
+     dbc.Row([], id='edad'),
    
 ]
 ,className="dashboard"  
