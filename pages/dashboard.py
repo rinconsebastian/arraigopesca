@@ -1,5 +1,5 @@
 # Basics Requirements
-from dash import dcc
+from dash import dcc,html
 
 
 # Dash Bootstrap Components
@@ -16,6 +16,7 @@ import plotly.figure_factory as ff
 
 import numpy as np
 
+from app_ds4f import app
 
 from lib.piechart import piechart
 from lib.linechart import linechart
@@ -23,6 +24,7 @@ from lib.bargroupedchart import bargroupedchart
 from lib.heatmapchart import heatmapchart
 from lib.distmultiplechart import distmultiplechart
 from lib.heatmap import heatmap
+from lib.predictor import predictor
 
 
 ############################################################################
@@ -92,6 +94,19 @@ group_labels = ['Group 1', 'Group 2', 'Group 3']
 colors = ['#835AF1', '#7FA6EE', '#B8F7D4']
 fig6 = distmultiplechart(df6,'Distribución del precio promedio de venta',group_labels,"",colors,"bc6") 
 
+#############################################################################
+# Predictor
+#############################################################################
+
+valores = [['0.9373207470646803', '0.5578861300061824', '0.6775102514642114',
+        '-0.17361004280264897', '0.0', '1.0', '0.0', '0.0', '0.0', '0.0',
+        '0.0', '0.0', '0.0', '1.0', '0.0', '0.0', '0.0', '0.0', '1.0',
+        '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '1.0', '0.0', '0.0',
+        '0.0', '0.0', '0.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0',
+        '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '6000.0',
+        'Menos de $ 500.000', 'Menos de $ 500.000', 'RÍO MAGDALENA']]
+
+
 
 ############################################################################
 #
@@ -102,22 +117,22 @@ fig6 = distmultiplechart(df6,'Distribución del precio promedio de venta',group_
 dashboard = dbc.Container([
     dbc.Row([filters.filters]),
     dbc.Row([
-        dbc.Col([], sm=12, md=6, id="idmap"),
+        dbc.Col([html.Img(src=app.get_asset_url("loading.gif"), height="300px", className="mr-10")], sm=12, md=6, id="idmap" , class_name="height100"),
         dbc.Col([
             dbc.Row([
-                dbc.Col([], sm=12, md=6, id="idfig1"),
-                dbc.Col([fig2.display()], sm=12, md=6),
+                dbc.Col([html.Img(src=app.get_asset_url("loading.gif"), height="300px", className="mr-10")], sm=12, md=6, id="idfig1"),
+                dbc.Col([html.Img(src=app.get_asset_url("loading.gif"), height="300px", className="mr-10")], sm=12, md=6, id="idfig3"),
             ]),
             dbc.Row([
-                dbc.Col([fig4.display()], sm=12, md=6),
-                dbc.Col([fig5.display()], sm=12, md=6),
+                dbc.Col([html.Img(src=app.get_asset_url("loading.gif"), height="300px", className="mr-10")], sm=12, md=6, id="idfig4"),
+                dbc.Col([html.Img(src=app.get_asset_url("loading.gif"), height="300px", className="mr-10")], sm=12, md=6, id="idfig5"),
             ]),
     
         ], sm=12, md=6),
        
 
-    ]),
-     dbc.Row([], id='edad'),
+    ], class_name="heighHv"),
+  
    
 ]
 ,className="dashboard"  

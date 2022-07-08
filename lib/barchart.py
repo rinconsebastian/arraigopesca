@@ -15,7 +15,7 @@ class barchart:
     @staticmethod
     def figura(df,title_x,title_y,title):
         fig = px.bar(df, x=title_x, y=title_y, height=350) #  'year', y='pop'
-        fig.update_layout(title_text=title, height=350)
+        fig.update_layout(title_text=title, height=350, yaxis={"tickformat": ',.0%',"range": [0,1]})
 
         return fig
         

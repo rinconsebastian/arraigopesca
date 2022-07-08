@@ -2,7 +2,9 @@
 from dash import Dash, dcc,  html, callback, Input, Output
 import dash_bootstrap_components as dbc
 from lib.heatmap import heatmap
-
+from lib.linechart import linechart
+from dash.dependencies import State
+from lib.predictor import predictor
 
 
 # Dash instance declaration
@@ -12,12 +14,11 @@ app = Dash(__name__, requests_pathname_prefix=request_path_prefix, external_styl
 app.title = 'Dashboard team 25 - cohort 6 Colombia Correlation One'  
 
 # LOAD THE DIFFERENT FILES
-from pages import dashboard, acercade
+from pages import dashboard, acercade, evaluacion
 from lib import title
 
 from lib.barchart import barchart
-from data.process import especies, mapData
-
+from data.process import especies, ingresos, mapData, artes, months
 ###########################################################
 #
 #           APP LAYOUT:
@@ -57,7 +58,7 @@ def display_page(pathname):
     if pathname == "/":
         return html.Div([dashboard.dashboard])
     elif pathname == "/evaluacion":
-        return "arraigo"
+        return html.Div([evaluacion.evaluacion])
     elif pathname == "/acercade":
         return html.Div([acercade.acercade])
     else:
@@ -114,11 +115,84 @@ def update_output(valuecuenca,valueedad):
     fig2 = barchart(df2,"Especies","Especie","Valor","","bc2s")
     return fig2.display()
 
+
+#############################################################
+# Fig 3 Arts
+#############################################################
+@app.callback(
+    Output('idfig3', 'children'),
+    Input('cuenca_dropdown', 'value'),
+    Input('age-slider', 'value')
+)
+def update_output3(valuecuenca,valueedad):
+    df3 = artes(valuecuenca,valueedad)
+    fig3 = barchart(df3,"Artes de pesca","artes_metodos","artes_conteo","","bc3s")
+    return fig3.display()
+
+
+#############################################################
+# Fig 4 Months
+#############################################################
+@app.callback(
+    Output('idfig4', 'children'),
+    Input('cuenca_dropdown', 'value'),
+    Input('age-slider', 'value')
+)
+def update_output4(valuecuenca,valueedad):
+    df4 = months(valuecuenca,valueedad)
+    fig4 = linechart(df4,"Meses de mayor captura","Mes","Valor","","bc4s")
+    return fig4.display()
+
+#############################################################
+# Fig 5 Ingresos
+#############################################################
+@app.callback(
+    Output('idfig5', 'children'),
+    Input('cuenca_dropdown', 'value'),
+    Input('age-slider', 'value')
+)
+def update_output5(valuecuenca,valueedad):
+    df5 = ingresos(valuecuenca,valueedad)
+    fig5 = barchart(df5,"Ingreso provenientes de la activdad pesquera","Rango","Porcentaje","","bc5s")
+    return fig5.display()
+
+
+'''
 @app.callback(
     Output('edad', 'children'),
     [Input('age-slider', 'value')])
 def update_output(value):
     return 'You have selected "{}"'.format(value)
+
+'''
+
+#############################################################
+# Form 
+#############################################################
+@app.callback(
+    Output('outPrediccion', 'children'),
+    [Input('submit-button', 'n_clicks')],
+    [State('edad-row', 'value'),
+     State('ingresos-row', 'value'),
+     State('faenas-row', 'value'),
+     State('kg-row', 'value'),
+     State('artes-checklist-input', 'value'),
+     State('especies-checklist-input', 'value'),
+     State('meses-checklist-input', 'value'),
+     State('precio-row', 'value'),
+     State('ingresoprom-row', 'value'),
+     State('gastoprom-row', 'value'),
+     State('cuenca-row', 'value'),
+     ])
+def compute(n_clicks, input1, input2, input3, input4, input5, input6, input7, input8, input9, input10, input11):
+    
+    if((input1) and (input2) and (input3) and (input4) and (input5)and (input6) and (input7)and (input8) and (input9 != 1) and (input10 != 1) and (input11 != 1)):
+        return predictor([input1, input2, input3, input4, input5, input6, input7, input8, input9, input10, input11])
+    else:
+        return dbc.Alert("Diligencie el formulario completo", color="danger"),
+   
+    
+
 #############################################################
 # TREEMAP PLOT : Add sidebar interaction here
 #############################################################

@@ -15,6 +15,7 @@ class linechart:
     @staticmethod
     def figura(df,title_x,title_y,title):
         fig = px.line(df, x=title_x, y=title_y, title=title, height=350)
+        fig.update_layout(yaxis={"tickformat": ',.0%',"range": [0,1]})
         # fig = px.line(df, x="year", y="lifeExp", title='Meses de mayor captura', height=350)
         return fig
         

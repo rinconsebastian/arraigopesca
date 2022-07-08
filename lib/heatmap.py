@@ -17,7 +17,7 @@ class heatmap:
         center_lat = df.lat.mean()-2
         center_lon = df.lon.mean()
         fig = px.density_mapbox(df, lat=title_x, lon=title_y, center={'lat':center_lat, 'lon':center_lon},zoom=5, mapbox_style='stamen-terrain', radius=10)
-        fig.update_layout(title_text=title, height=720)
+        fig.update_layout(title_text=title, height=750)
         return fig
         
 

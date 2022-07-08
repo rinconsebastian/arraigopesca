@@ -134,6 +134,49 @@
 
 }
 
+.widget > div{
+   height:100%;
+}
+
 body{
     background-color: #FAFAFA;
+}
+
+.inputform{
+    margin-bottom: 1rem!important;
+    border-bottom-style: solid;
+    border-bottom-color: #b4aaaaee;
+    border-bottom-width: 1px;
+}
+
+
+/*
+.heighHv{
+    height: calc(100vh - 150px)
+}
+
+.dash-graph{
+    height: 100%;
+}
+.height100 > div{
+    height: 100%;
+}
+
+.height50{
+    height: 50%;
+}
+.dash-graph{
+    height: 100%;
+}
+svg{
+    max-height: 100% !important;
+}
+
+*/
+.widget2{
+    padding: 30px;
+}
+.tituloarraigo{
+    text-align: center;
+    padding-bottom: 30px;;
 }

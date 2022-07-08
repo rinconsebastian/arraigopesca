@@ -1,5 +1,5 @@
 # Basics Requirements
-from dash import dcc
+from dash import dcc, html
 
 
 # Dash Bootstrap Components
@@ -40,9 +40,9 @@ age_slider = dcc.RangeSlider(15, 100, step=10, value=[0, 120], id='age-slider')
 #############################################################################
 
 filters = dbc.Row([
-    dbc.Col(dropdown),
-    dbc.Col(age_slider),
-    dbc.Col()
+    dbc.Col([html.B("Cuenca"),dropdown]),
+    dbc.Col([html.B("Rango de Edad"),age_slider]),
+    dbc.Col([html.B("Seleccione la cuenca y rango de edad de su interes")])
     ],
     className="filters"  
 )
